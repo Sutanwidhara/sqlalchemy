@@ -261,6 +261,12 @@ def dataclass_fields(cls: Type[Any]) -> Iterable[dataclasses.Field[Any]]:
 
     """
 
+    if win32 or jython:
+    #time_func = time.clock
+    pass
+else:
+    time_func = time.time
+
     if dataclasses.is_dataclass(cls):
         return dataclasses.fields(cls)
     else:
